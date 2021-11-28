@@ -4,7 +4,7 @@ FROM arillso/ansible:2.12.0 as production
 
 USER root
 
-ADD https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem /usr/local/share/ca-certificates/ca-certificates.crt
+ADD https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem /usr/local/share/ca-certificates
 
 RUN apk --update --no-cache add \
 	mono \
