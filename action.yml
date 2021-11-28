@@ -1,0 +1,8 @@
+name: "Play Chocomilk"
+description: "Github Action for running Chocomilk."
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/open-circle-ltd/chocomilk"
+branding:
+  icon: "play-circle"
+  color: "gray-dark"
