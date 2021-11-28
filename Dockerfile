@@ -5,6 +5,8 @@ FROM arillso/ansible:2.12.0 as production
 USER root
 
 RUN apk --update --no-cache add \
+    ca-certificates \
+    && apk --update --no-cache add \
 	mono \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
 
@@ -21,7 +23,6 @@ RUN /usr/bin/ansible-galaxy \
 
 RUN curl https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem -o gdig2.crt.pem \
     && cat gdig2.crt.pem >> /etc/ssl/certs/ca-certificates.crt \
-    && apk --no-cache add ca-certificates \
     && update-ca-certificates
 # Command to run when starting the container
 CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml", "-vvvv"]
