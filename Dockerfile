@@ -19,5 +19,9 @@ RUN /usr/bin/ansible-galaxy \
    /opt/chocomilk/collections/requirements.yml \
    -p /usr/share/ansible/collections
 
+RUN curl https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem -o gdig2.crt.pem \
+    && cat gdig2.crt.pem >> /etc/ssl/certs/ca-certificates.crt \
+    && apk --no-cache add ca-certificates \
+    && update-ca-certificates
 # Command to run when starting the container
 CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml", "-vvvv"]
