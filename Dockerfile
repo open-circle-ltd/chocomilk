@@ -4,11 +4,12 @@ FROM arillso/ansible:2.12.0 as production
 
 USER root
 
+ADD https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem /usr/local/share/ca-certificates/ca-certificates.crt
+
 RUN apk --update --no-cache add \
-    ca-certificates \
-    && apk --update --no-cache add \
 	mono \
-    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    && update-ca-certificates
 
 COPY --from=choco usr/local/bin/choco.exe /usr/local/bin
 
@@ -21,6 +22,5 @@ RUN /usr/bin/ansible-galaxy \
    /opt/chocomilk/collections/requirements.yml \
    -p /usr/share/ansible/collections
 
-ADD https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem /usr/local/share/ca-certificates/ca-certificates.crt
 # Command to run when starting the container
 CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml", "-vvvv"]
