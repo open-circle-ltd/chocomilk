@@ -7,6 +7,8 @@ USER root
 ADD https://ssl-ccp.godaddy.com/repository/gdig2.crt.pem /usr/local/share/ca-certificates
 ADD https://letsencrypt.org/certs/lets-encrypt-r3.pem /usr/local/share/ca-certificates
 
+ADD https://dist.nuget.org/win-x86-commandline/v6.0.0/nuget.exe /usr/local/bin
+
 RUN apk --update --no-cache add \
 	mono \
     mono-dev \

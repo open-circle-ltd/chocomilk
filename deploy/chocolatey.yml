@@ -1,14 +1,6 @@
 ---
-- name: "{{ package_id }} : add apikey{{ loop_deploy.repository }}"
-  shell: /usr/local/bin/choco.exe apikey -s "{{ repository }}" -k="'{{ key }}'"
-  vars:
-    repository: "{{ loop_deploy.repository | mandatory }}"
-    key: "{{ loop_deploy.key | mandatory }}"
-  tags:
-    - deployment
-
 - name: "{{ package_id }} : Upload Package to {{ loop_deploy.repository }}"
-  shell: /usr/local/bin/choco.exe push "{{ nupkg }}" --source "'{{ repository }}'" --debug --verbose
+  shell: /usr/local/bin/choco.exe push "{{ nupkg }}" {{ key }} -src "'{{ repository }}'"
   vars:
     nupkg: "{{ path_package }}/{{ package_id }}.{{ available_version }}.nupkg"
     repository: "{{ loop_deploy.repository | mandatory }}"
