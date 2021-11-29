@@ -14,6 +14,7 @@ RUN apk --update --no-cache add \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates bash icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib wget \
     && rm -rf /var/cache/apk/* \
+    && update-ca-certificates 
 
 RUN mkdir -p /usr/share/dotnet \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet 
