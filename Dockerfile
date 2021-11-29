@@ -13,9 +13,7 @@ RUN apk --update --no-cache add \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates \
     && rm -rf /var/cache/apk/* \
-    && update-ca-certificates \
-    && cert-sync /usr/local/share/ca-certificates/lets-encrypt-r3.pem \
-    && cert-sync /usr/local/share/ca-certificates/gdig2.crt.pem
+    && update-ca-certificates 
 
 COPY --from=choco usr/local/bin/choco.exe /usr/local/bin
 
@@ -26,7 +24,9 @@ COPY . /opt/chocomilk
 RUN /usr/bin/ansible-galaxy \
    collection install -r \
    /opt/chocomilk/collections/requirements.yml \
-   -p /usr/share/ansible/collections
+   -p /usr/share/ansible/collections \
+   && cert-sync --user /usr/local/share/ca-certificates/lets-encrypt-r3.pem \
+   && cert-sync --user /usr/local/share/ca-certificates/gdig2.crt.pem
 
 # Command to run when starting the container
 CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml", "-vvvv"]
