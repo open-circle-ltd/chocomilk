@@ -15,7 +15,7 @@ RUN apk --update --no-cache add \
     && apk --no-cache add ca-certificates \
     && rm -rf /var/cache/apk/* \
     && update-ca-certificates \
-    && cert-sync
+    && cert-sync /usr/local/share/ca-certificates
 
 COPY --from=choco usr/local/bin/choco.exe /usr/local/bin
 
