@@ -10,6 +10,7 @@ ADD https://letsencrypt.org/certs/lets-encrypt-r3.pem /usr/local/share/ca-certif
 
 RUN apk --update --no-cache add \
 	mono \
+    mono-dev \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates \
     && rm -rf /var/cache/apk/* \
