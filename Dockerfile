@@ -13,7 +13,7 @@ RUN apk --update --no-cache add \
     && rm -rf /var/cache/apk/* \
     && update-ca-certificates 
 
-RUN wget https://dot.net/v1/dotnet-install.sh \
+RUN wget --progress=dot:giga https://dot.net/v1/dotnet-install.sh \
     && chmod +x dotnet-install.sh \
     && ./dotnet-install.sh -c 6.0 --install-dir /usr/share/dotnet
 
