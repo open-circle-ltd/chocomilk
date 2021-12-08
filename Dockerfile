@@ -29,4 +29,4 @@ RUN /usr/bin/ansible-galaxy \
    -p /usr/share/ansible/collections
 
 # Command to run when starting the container
-CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml"]
+CMD ["/usr/bin/ansible-playbook", "/opt/chocomilk/chocomilk.yml", "-vvvv"]
