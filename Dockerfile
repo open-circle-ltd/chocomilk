@@ -1,6 +1,6 @@
 FROM chocolatey/choco:latest-linux as choco
 
-FROM arillso/ansible:2.12.0 as production
+FROM arillso/ansible:2.14.1 as production
 
 USER root
 
