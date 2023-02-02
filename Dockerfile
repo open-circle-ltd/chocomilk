@@ -23,8 +23,7 @@ COPY --from=choco  /opt/chocolatey /opt/chocolatey
 
 COPY . /opt/chocomilk
 
-RUN /usr/bin/ansible-galaxy \
-   collection install -r \
+RUN /usr/bin/ansible-galaxy collection install -r \
    /opt/chocomilk/collections/requirements.yml \
    -p /usr/share/ansible/collections
 
