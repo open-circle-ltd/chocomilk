@@ -30,4 +30,4 @@
       set_fact:
         update: true
         force_update: true
-  when: available_version > current_version
+  when: current_version is version_compare(available_version, 'gt') 
