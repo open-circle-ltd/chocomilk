@@ -11,7 +11,7 @@
   community.general.xml:
     path: "{{ path_nuspec }}"
     namespaces:
-      ns: "https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd"
+      ns: "http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"
     xpath: /ns:package/ns:metadata/ns:version
     content: text
   register: register_nuspec
@@ -19,7 +19,7 @@
 - name: "{{ package_id }} : search version"
   set_fact:
     available_version: "{{ versions_prefix | default() }}{{ version | regex_replace('[-|_]', '.') }}"
-    current_version: '{{ register_nuspec.matches[0]["{https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd}version"] }}'
+    current_version: '{{ register_nuspec.matches[0]["{http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd}version"] }}'
 
 - block:
     - name: "{{ package_id }} : check new version"

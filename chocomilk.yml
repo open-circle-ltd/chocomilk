@@ -38,7 +38,7 @@
       community.general.xml:
         path: "{{ register_nuspec_file.files[0].path }}"
         namespaces:
-          ns: "https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd"
+          ns: "http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"
         xpath: /ns:package/ns:metadata/ns:id
         content: text
       register: register_package_id
@@ -47,7 +47,7 @@
       xml:
         path: "{{ register_nuspec_file.files[0].path }}"
         namespaces:
-          ns: "https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd"
+          ns: "http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"
         xpath: /ns:package/ns:metadata/ns:title
         content: text
       register: register_package_title
@@ -58,8 +58,8 @@
         path_nuspec: "{{ register_nuspec_file.files[0].path }}"
         path_chocolateyinstall: "{{ register_chocolateyinstall_path.files[0].path }}"
         path_readme: "{{ register_readme_path.files[0].path }}"
-        package_id: '{{ register_package_id.matches[0]["{https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd}id"] }}'
-        package_title: '{{ register_package_title.matches[0]["{https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd}title"] }}'
+        package_id: '{{ register_package_id.matches[0]["{http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd}id"] }}'
+        package_title: '{{ register_package_title.matches[0]["{http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd}title"] }}'
 
   tasks:
     # Check new Version
