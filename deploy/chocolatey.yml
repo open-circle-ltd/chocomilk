@@ -1,6 +1,6 @@
 ---
 - name: "{{ package_id }} : Upload Package to {{ loop_deploy.repository }}"
-  shell: /usr/share/dotnet/dotnet nuget push {{ nupkg }} -k {{ key }} -s {{ repository }} -SkipDuplicate
+  shell: /usr/share/dotnet/dotnet nuget push {{ nupkg }} -k {{ key }} -s {{ repository }} --skip-duplicate
   vars:
     nupkg: "{{ path_package }}/{{ package_id }}.{{ available_version }}.nupkg"
     repository: "{{ loop_deploy.repository | mandatory }}"
