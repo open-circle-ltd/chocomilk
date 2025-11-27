@@ -5,8 +5,6 @@ FROM arillso/ansible:2.14.1 as production
 USER root
 
 RUN apk --update --no-cache add \
-	mono \
-    mono-dev \
     libgdiplus \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates bash icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib wget \
