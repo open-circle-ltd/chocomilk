@@ -12,7 +12,6 @@ RUN apk add tiff --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --al
     && apk --update --no-cache add \
     mono \
     mono-dev \
-    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates bash icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib wget \
     && rm -rf /var/cache/apk/* \
     && update-ca-certificates 
