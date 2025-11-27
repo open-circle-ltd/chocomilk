@@ -4,8 +4,14 @@ FROM arillso/ansible:2.14.1 as production
 
 USER root
 
-RUN apk --update --no-cache add \
-    libgdiplus \
+# Add edge/community repo
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+
+RUN apk add tiff --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted \
+    && apk add libgdiplus --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted \
+    && apk --update --no-cache add \
+    mono \
+    mono-dev \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk --no-cache add ca-certificates bash icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib wget \
     && rm -rf /var/cache/apk/* \
